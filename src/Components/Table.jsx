@@ -6,9 +6,12 @@ function Table() {
   
 
   const [data ,setData] = useState([])
+  const [ loading , setLoading] = useState(true)
  
   useEffect(()=>{axios.get("https://api.coingecko.com/api/v3/coins/")
-  .then((res)=>{setData(res.data)})
+  .then((res)=>{
+    setLoading(false) 
+    setData(res.data)})
   .catch((err)=>{})
 })
   
@@ -29,23 +32,25 @@ function Table() {
       </tr>
     </thead>
     <tbody>
+ 
+        { load ? <h1> Data is Loading</h1> :
+        data.map((item, index)=>{
+          return(
 
-        {data.map((item, index)=>{
-            return(
-
-                <tr>
-                <th scope="row">{index +1}</th>
-                <td><Link>{item.name}</Link></td>
-                <td>{item.market_data.current_price.usd}</td>
-                <td>{item.market_data.price_change_percentage_24h}</td>
-                <td>{item.market_data.price_change_percentage_7d}</td>
-                <td>{item.market_data.price_change_percentage_1y}</td>
-                <td>{item.market_data.market_cap_change_24h}</td>
-                <td>{item.market_data.market_cap.usd}</td>
-                <td></td>
-              </tr>
-                )
-        })}
+              <tr key ={index}>
+              <th scope="row">{index +1}</th>
+              <td><Link to="/">{item.name}</Link></td>
+              <td>{item.market_data.current_price.usd}</td>
+              <td>{item.market_data.price_change_percentage_24h}</td>
+              <td>{item.market_data.price_change_percentage_7d}</td>
+              <td>{item.market_data.price_change_percentage_1y}</td>
+              <td>{item.market_data.market_cap_change_24h}</td>
+              <td>{item.market_data.market_cap.usd}</td>
+              <td></td>
+            </tr>
+              )
+      })} 
+        
       
     
     </tbody>

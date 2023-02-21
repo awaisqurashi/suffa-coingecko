@@ -7,10 +7,10 @@ function App() {
     <div>
     <Navbar/>
 
-
+{/* 
 <Routes>
   <Route > </Route>
-</Routes>
+</Routes> */}
       <Table/>
     </div>
   )
