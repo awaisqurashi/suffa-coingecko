@@ -1,5 +1,6 @@
 import React from 'react'
-import { Routes } from 'react-router'
+import { Routes, Route } from 'react-router'
+import Details from './Components/Details'
 import Navbar from './Components/Navbar'
 import Table from './Components/Table'
 function App() {
@@ -7,11 +8,12 @@ function App() {
     <div>
     <Navbar/>
 
-{/* 
+
 <Routes>
-  <Route > </Route>
-</Routes> */}
-      <Table/>
+  <Route path ="/" element={<Table/>} > </Route>
+  <Route path =":det" element={<Details/>} > </Route>
+</Routes>
+      
     </div>
   )
 }
